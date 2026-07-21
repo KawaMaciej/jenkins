@@ -7,6 +7,18 @@ pipeline {
                 echo "Getting source code"
             }
         }
+        
+        stage("Debug") {
+            steps {
+                sh '''
+                    which python3 || true
+                    python3 --version || true
+                    which pip || true
+                    which pip3 || true
+                    python3 -m pip --version || true
+                '''
+            }
+        }
 
         stage("Install") {
             steps {
