@@ -10,7 +10,7 @@ pipeline {
 
         stage("Install") {
             steps {
-                sh'''
+                sh '''
                 pip install uv
                 uv sync 
                 '''
@@ -20,7 +20,7 @@ pipeline {
         stage("Test") {
             steps{
                 sh'''
-                pytest
+                uv run pytest
                 '''
             }
         }
