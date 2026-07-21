@@ -7,7 +7,7 @@ pipeline {
                 echo "Getting source code"
             }
         }
-        
+
         stage("Debug") {
             steps {
                 sh '''
@@ -23,6 +23,8 @@ pipeline {
         stage("Install") {
             steps {
                 sh '''
+                python3 -m pip install
+                pip install uv
                 uv sync 
                 '''
             }
