@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.15'
+        }
+    }
 
     stages {
         stage("Checkout") {
@@ -7,7 +11,7 @@ pipeline {
                 echo "Getting source code"
             }
         }
-
+        
         stage("Debug") {
             steps {
                 sh '''
