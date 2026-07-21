@@ -11,7 +11,6 @@ pipeline {
         stage("Install") {
             steps {
                 sh '''
-                pip install uv
                 uv sync 
                 '''
             }
