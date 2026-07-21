@@ -24,7 +24,9 @@ pipeline {
             steps {
                 sh '''
                 pip install --break-system-packages uv
+                export PATH="$HOME/.local/bin:$PATH"
                 uv sync 
+                
                 '''
             }
         }
