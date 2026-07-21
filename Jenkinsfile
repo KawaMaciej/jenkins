@@ -1,25 +1,24 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.15'
+            image 'python:3.12'
         }
     }
 
     stages {
         stage("Checkout") {
             steps {
-                echo "Getting source code"
+                git 'https://github.com/KawaMaciej/jenkins'
             }
         }
-        
+
         stage("Debug") {
             steps {
                 sh '''
-                    which python3 || true
-                    python3 --version || true
-                    which pip || true
-                    which pip3 || true
-                    python3 -m pip --version || true
+                    which python
+                    python --version
+                    which pip
+                    pip --version
                 '''
             }
         }
@@ -27,17 +26,17 @@ pipeline {
         stage("Install") {
             steps {
                 sh '''
-                python3 -m pip install
-                pip install uv
-                uv sync 
+                    python -m pip install --upgrade pip
+                    python -m pip install uv
+                    uv sync
                 '''
             }
         }
 
         stage("Test") {
-            steps{
-                sh'''
-                uv run pytest
+            steps {
+                sh '''
+                    uv run pytest
                 '''
             }
         }
