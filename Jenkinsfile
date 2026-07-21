@@ -23,7 +23,7 @@ pipeline {
         stage("Install") {
             steps {
                 sh '''
-                pip install uv
+                pip install --break-system-packages uv
                 uv sync 
                 '''
             }
