@@ -20,7 +20,17 @@ pipeline {
                     which pip || true
                     which pip3 || true
                     python3 -m pip --version || true
-                '''
+                    pwd
+                    find .
+                    echo "----- test file -----"
+                    cat tests/test_app.py
+
+                    echo "----- app package -----"
+                    find src
+
+                    echo "----- import test -----"
+                    uv run python -c "import app; print(app)"
+                    '''
             }
         }
 
